@@ -16,4 +16,4 @@ RUN apk add --no-cache build-base curl bash inotify-tools && \
 
 ENV HOME=/root
 
-ENTRYPOINT ["unison", "-auto", "-batch", "-repeat", "watch", "/home/app/source", "/home/app/myapp"]
+CMD unison -auto -batch -repeat watch -ignore "Path .git" -ignore "Path tmp" -ignore "Path private" -ignore "Path log" /home/app/source /home/app/myapp
