@@ -11,9 +11,9 @@ RUN apk add --no-cache build-base curl bash inotify-tools && \
     apk del curl build-base ocaml && \
     apk add --no-cache libgcc libstdc++ && \
     rm -rf /tmp/unison-${UNISON_VERSION} && \
-    mkdir -p /home/app/source && \
     mkdir -p /home/app/myapp
 
 ENV HOME=/root
-
-CMD unison -auto -batch -repeat watch -ignore "Path .git" -ignore "Path tmp" -ignore "Path private" -ignore "Path log" /home/app/source /home/app/myapp
+WORKDIR /home/app/myapp
+EXPOSE 12124
+CMD unison -socket 12124
